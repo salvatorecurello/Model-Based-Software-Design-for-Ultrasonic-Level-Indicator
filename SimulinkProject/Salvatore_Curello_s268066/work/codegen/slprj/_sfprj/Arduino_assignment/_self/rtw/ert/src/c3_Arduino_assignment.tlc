@@ -1,0 +1,110 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   13 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "is_active_c3_Arduino_assignment"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_TRIGGER"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "TRIGGER"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_LOGIC_OPERATOR"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "LOGIC_OPERATOR"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_LED"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "LED"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "counter"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "counter"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "mean"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "mean"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "i"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "i"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "dist_v"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "dist_v"\
+      SrcLocation  ""\
+      Dimensions   [4]\
+    }\
+    ChartData {\
+      Name         "up"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "up"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "down"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "down"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i2"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i3"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

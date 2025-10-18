@@ -1,0 +1,469 @@
+        -:    0:Source:feedback_control.c
+        -:    0:Graph:feedback_control.gcno
+        -:    0:Data:feedback_control.gcda
+        -:    0:Runs:1
+        -:    1:/*
+        -:    2: * Academic License - for use in teaching, academic research, and meeting
+        -:    3: * course requirements at degree granting institutions only.  Not for
+        -:    4: * government, commercial, or other organizational use.
+        -:    5: *
+        -:    6: * File: feedback_control.c
+        -:    7: *
+        -:    8: * Code generated for Simulink model 'feedback_control'.
+        -:    9: *
+        -:   10: * Model version                  : 1.57
+        -:   11: * Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
+        -:   12: * C/C++ source code generated on : Thu Jun 24 15:44:09 2021
+        -:   13: *
+        -:   14: * Target selection: ert.tlc
+        -:   15: * Embedded hardware selection: ARM Compatible->ARM Cortex-M
+        -:   16: * Code generation objectives: Unspecified
+        -:   17: * Validation result: Not run
+        -:   18: */
+        -:   19:
+        -:   20:#include "feedback_control.h"
+        -:   21:
+        -:   22:/* Named constants for Chart: '<Root>/Stateflow_controller' */
+        -:   23:#define feedback_con_IN_NO_ACTIVE_CHILD ((uint8_T)0U)
+        -:   24:#define feedback_contr_IN_INITIAL_STATE ((uint8_T)3U)
+        -:   25:#define feedback_contro_IN_SAVE_MEASURE ((uint8_T)7U)
+        -:   26:#define feedback_control_IN_COUNTER    ((uint8_T)1U)
+        -:   27:#define feedback_control_IN_ERROR      ((uint8_T)2U)
+        -:   28:#define feedback_control_IN_IN_RANGE   ((uint8_T)4U)
+        -:   29:#define feedback_control_IN_MEAN       ((uint8_T)5U)
+        -:   30:#define feedback_control_IN_OFF        ((uint8_T)1U)
+        -:   31:#define feedback_control_IN_ON         ((uint8_T)2U)
+        -:   32:#define feedback_control_IN_OUT_RANGE  ((uint8_T)6U)
+        -:   33:#define feedback_control_IN_TRIGGER_OFF ((uint8_T)1U)
+        -:   34:#define feedback_control_IN_TRIGGER_ON ((uint8_T)2U)
+        -:   35:
+        -:   36:/*===========*
+        -:   37: * Constants *
+        -:   38: *===========*/
+        -:   39:#define RT_PI                          3.14159265358979323846
+        -:   40:#define RT_PIF                         3.1415927F
+        -:   41:#define RT_LN_10                       2.30258509299404568402
+        -:   42:#define RT_LN_10F                      2.3025851F
+        -:   43:#define RT_LOG10E                      0.43429448190325182765
+        -:   44:#define RT_LOG10EF                     0.43429449F
+        -:   45:#define RT_E                           2.7182818284590452354
+        -:   46:#define RT_EF                          2.7182817F
+        -:   47:
+        -:   48:/*
+        -:   49: * UNUSED_PARAMETER(x)
+        -:   50: *   Used to specify that a function parameter (argument) is required but not
+        -:   51: *   accessed by the function body.
+        -:   52: */
+        -:   53:#ifndef UNUSED_PARAMETER
+        -:   54:#if defined(__LCC__)
+        -:   55:#define UNUSED_PARAMETER(x)                                      /* do nothing */
+        -:   56:#else
+        -:   57:
+        -:   58:/*
+        -:   59: * This is the semi-ANSI standard way of indicating that an
+        -:   60: * unused function parameter is required.
+        -:   61: */
+        -:   62:#define UNUSED_PARAMETER(x)            (void) (x)
+        -:   63:#endif
+        -:   64:#endif
+        -:   65:
+        -:   66:/* Model step function */
+function _Z21feedback_control_stepP24tag_RTM_feedback_controlhPhS1_ called 2700001 returned 100% blocks executed 100%
+  2700001:   67:void feedback_control_step(RT_MODEL_feedback_control *const feedback_control_M,
+        -:   68:  uint8_T feedback_control_U_echo_input, uint8_T *feedback_control_Y_level,
+        -:   69:  uint8_T *feedback_control_Y_trigger_output)
+        -:   70:{
+  2700001:   71:  D_Work_feedback_control *feedback_control_DWork = feedback_control_M->dwork;
+        -:   72:
+        -:   73:  /* Chart: '<Root>/Stateflow_controller' incorporates:
+        -:   74:   *  Inport: '<Root>/echo_input'
+        -:   75:   */
+  2700001:   76:  if (feedback_control_DWork->temporalCounter_i1 < 65535U) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+  2700001:   77:    feedback_control_DWork->temporalCounter_i1++;
+        -:   78:  }
+        -:   79:
+  2700001:   80:  if (feedback_control_DWork->temporalCounter_i2 < 65535U) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+  2700001:   81:    feedback_control_DWork->temporalCounter_i2++;
+        -:   82:  }
+        -:   83:
+  2700001:   84:  if (feedback_control_DWork->temporalCounter_i3 < MAX_uint32_T) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+  2700001:   85:    feedback_control_DWork->temporalCounter_i3++;
+        -:   86:  }
+        -:   87:
+        -:   88:  /* Gateway: Stateflow_controller */
+        -:   89:  /* During: Stateflow_controller */
+  2700001:   90:  if (feedback_control_DWork->is_active_c3_feedback_control == 0U) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:   91:    /* Entry: Stateflow_controller */
+        1:   92:    feedback_control_DWork->is_active_c3_feedback_control = 1U;
+        -:   93:
+        -:   94:    /* Entry Internal: Stateflow_controller */
+        -:   95:    /* Entry 'TRIGGER': '<S1>:4' */
+        -:   96:    /* Entry Internal 'TRIGGER': '<S1>:4' */
+        -:   97:    /* Transition: '<S1>:7' */
+        1:   98:    feedback_control_DWork->is_TRIGGER = feedback_control_IN_TRIGGER_ON;
+        1:   99:    feedback_control_DWork->temporalCounter_i1 = 0U;
+        -:  100:
+        -:  101:    /* Outport: '<Root>/trigger_output' */
+        -:  102:    /* Entry 'TRIGGER_ON': '<S1>:6' */
+        1:  103:    *feedback_control_Y_trigger_output = 1U;
+        -:  104:
+        -:  105:    /* Entry Internal 'LOGIC_OPERATOR': '<S1>:11' */
+        -:  106:    /* Transition: '<S1>:13' */
+        1:  107:    feedback_control_DWork->is_LOGIC_OPERATOR = feedback_contr_IN_INITIAL_STATE;
+        1:  108:    feedback_control_DWork->temporalCounter_i2 = 0U;
+        -:  109:
+        -:  110:    /* Entry 'INITIAL_STATE': '<S1>:12' */
+        1:  111:    feedback_control_DWork->dist_v[0] = 0.0;
+        1:  112:    feedback_control_DWork->dist_v[1] = 0.0;
+        1:  113:    feedback_control_DWork->dist_v[2] = 0.0;
+        1:  114:    feedback_control_DWork->dist_v[3] = 0.0;
+        1:  115:    feedback_control_DWork->i = 1U;
+        1:  116:    feedback_control_DWork->counter = 0U;
+        1:  117:    feedback_control_DWork->mean = 0.0;
+        -:  118:
+        -:  119:    /* Entry Internal 'LED': '<S1>:51' */
+        -:  120:    /* Transition: '<S1>:53' */
+        1:  121:    feedback_control_DWork->is_LED = feedback_control_IN_OFF;
+        1:  122:    feedback_control_DWork->temporalCounter_i3 = 0U;
+        -:  123:
+        -:  124:    /* Outport: '<Root>/level' */
+        -:  125:    /* Entry 'OFF': '<S1>:52' */
+        1:  126:    *feedback_control_Y_level = 0U;
+        -:  127:  } else {
+        -:  128:    /* During 'TRIGGER': '<S1>:4' */
+  2700000:  129:    if (feedback_control_DWork->is_TRIGGER == feedback_control_IN_TRIGGER_OFF) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 1%
+        -:  130:      /* Outport: '<Root>/trigger_output' */
+  2699550:  131:      *feedback_control_Y_trigger_output = 0U;
+        -:  132:
+        -:  133:      /* During 'TRIGGER_OFF': '<S1>:8' */
+  2699550:  134:      if (feedback_control_DWork->temporalCounter_i1 >= 60000U) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  135:        /* Transition: '<S1>:10' */
+       44:  136:        feedback_control_DWork->is_TRIGGER = feedback_control_IN_TRIGGER_ON;
+       44:  137:        feedback_control_DWork->temporalCounter_i1 = 0U;
+        -:  138:
+        -:  139:        /* Outport: '<Root>/trigger_output' */
+        -:  140:        /* Entry 'TRIGGER_ON': '<S1>:6' */
+       44:  141:        *feedback_control_Y_trigger_output = 1U;
+        -:  142:      }
+        -:  143:    } else {
+        -:  144:      /* Outport: '<Root>/trigger_output' */
+      450:  145:      *feedback_control_Y_trigger_output = 1U;
+        -:  146:
+        -:  147:      /* During 'TRIGGER_ON': '<S1>:6' */
+      450:  148:      if (feedback_control_DWork->temporalCounter_i1 >= 10U) {
+branch  0 taken 10% (fallthrough)
+branch  1 taken 90%
+        -:  149:        /* Transition: '<S1>:9' */
+       45:  150:        feedback_control_DWork->is_TRIGGER = feedback_control_IN_TRIGGER_OFF;
+       45:  151:        feedback_control_DWork->temporalCounter_i1 = 0U;
+        -:  152:
+        -:  153:        /* Outport: '<Root>/trigger_output' */
+        -:  154:        /* Entry 'TRIGGER_OFF': '<S1>:8' */
+       45:  155:        *feedback_control_Y_trigger_output = 0U;
+        -:  156:      }
+        -:  157:    }
+        -:  158:
+        -:  159:    /* During 'LOGIC_OPERATOR': '<S1>:11' */
+  2700000:  160:    switch (feedback_control_DWork->is_LOGIC_OPERATOR) {
+branch  0 taken 52%
+branch  1 taken 1%
+branch  2 taken 41%
+branch  3 taken 2%
+branch  4 taken 1%
+branch  5 taken 3%
+branch  6 taken 2%
+  1412468:  161:     case feedback_control_IN_COUNTER:
+        -:  162:      /* During 'COUNTER': '<S1>:14' */
+  1412468:  163:      if (feedback_control_U_echo_input == 0) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  164:        /* Transition: '<S1>:18' */
+     1390:  165:        feedback_control_DWork->is_LOGIC_OPERATOR =
+        -:  166:          feedback_contro_IN_SAVE_MEASURE;
+     1390:  167:        feedback_control_DWork->temporalCounter_i2 = 0U;
+        -:  168:
+        -:  169:        /* Entry 'SAVE_MEASURE': '<S1>:16' */
+     1390:  170:        feedback_control_DWork->dist_v[feedback_control_DWork->i - 1] =
+     1390:  171:          feedback_control_DWork->counter;
+        -:  172:      } else {
+  1411078:  173:        feedback_control_DWork->counter++;
+        -:  174:      }
+  1412468:  175:      break;
+        -:  176:
+       21:  177:     case feedback_control_IN_ERROR:
+        -:  178:      /* During 'ERROR': '<S1>:26' */
+        -:  179:      /* Transition: '<S1>:46' */
+        -:  180:      /* Transition: '<S1>:47' */
+       21:  181:      feedback_control_DWork->is_LOGIC_OPERATOR =
+        -:  182:        feedback_contr_IN_INITIAL_STATE;
+       21:  183:      feedback_control_DWork->temporalCounter_i2 = 0U;
+        -:  184:
+        -:  185:      /* Entry 'INITIAL_STATE': '<S1>:12' */
+       21:  186:      feedback_control_DWork->dist_v[0] = 0.0;
+       21:  187:      feedback_control_DWork->dist_v[1] = 0.0;
+       21:  188:      feedback_control_DWork->dist_v[2] = 0.0;
+       21:  189:      feedback_control_DWork->dist_v[3] = 0.0;
+       21:  190:      feedback_control_DWork->i = 1U;
+       21:  191:      feedback_control_DWork->counter = 0U;
+       21:  192:      feedback_control_DWork->mean = 0.0;
+       21:  193:      break;
+        -:  194:
+  1093607:  195:     case feedback_contr_IN_INITIAL_STATE:
+        -:  196:      /* During 'INITIAL_STATE': '<S1>:12' */
+  1093607:  197:      if (feedback_control_U_echo_input == 1) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  198:        /* Transition: '<S1>:15' */
+        3:  199:        feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_COUNTER;
+        -:  200:
+        -:  201:        /* Entry 'COUNTER': '<S1>:14' */
+        3:  202:        feedback_control_DWork->counter++;
+        -:  203:      } else {
+  1093604:  204:        if (feedback_control_DWork->temporalCounter_i2 >= 60010U) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  205:          /* Transition: '<S1>:50' */
+        -:  206:          /* Transition: '<S1>:49' */
+       18:  207:          feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_ERROR;
+        -:  208:
+        -:  209:          /* Entry 'ERROR': '<S1>:26' */
+       18:  210:          feedback_control_DWork->up = 0.5;
+       18:  211:          feedback_control_DWork->down = 0.5;
+        -:  212:        }
+        -:  213:      }
+  1093607:  214:      break;
+        -:  215:
+    62834:  216:     case feedback_control_IN_IN_RANGE:
+        -:  217:      /* During 'IN_RANGE': '<S1>:24' */
+    62834:  218:      if (feedback_control_U_echo_input == 1) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 99%
+        -:  219:        /* Transition: '<S1>:30' */
+      353:  220:        feedback_control_DWork->counter = 0U;
+        -:  221:
+        -:  222:        /* Transition: '<S1>:33' */
+        -:  223:        /* Transition: '<S1>:34' */
+      353:  224:        feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_COUNTER;
+        -:  225:
+        -:  226:        /* Entry 'COUNTER': '<S1>:14' */
+      353:  227:        feedback_control_DWork->counter++;
+        -:  228:      } else {
+    62481:  229:        if (feedback_control_DWork->temporalCounter_i2 >= 60010U) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  230:          /* Transition: '<S1>:39' */
+        -:  231:          /* Transition: '<S1>:42' */
+        -:  232:          /* Transition: '<S1>:43' */
+        1:  233:          feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_ERROR;
+        -:  234:
+        -:  235:          /* Entry 'ERROR': '<S1>:26' */
+        1:  236:          feedback_control_DWork->up = 0.5;
+        1:  237:          feedback_control_DWork->down = 0.5;
+        -:  238:        }
+        -:  239:      }
+    62834:  240:      break;
+        -:  241:
+     1383:  242:     case feedback_control_IN_MEAN:
+        -:  243:      /* During 'MEAN': '<S1>:20' */
+     1383:  244:      if ((feedback_control_DWork->mean >= 10.0) &&
+branch  0 taken 32% (fallthrough)
+branch  1 taken 68%
+      447:  245:          (feedback_control_DWork->mean <= 100.0)) {
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+        -:  246:        /* Transition: '<S1>:28' */
+      354:  247:        feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_IN_RANGE;
+      354:  248:        feedback_control_DWork->temporalCounter_i2 = 0U;
+        -:  249:
+        -:  250:        /* Entry 'IN_RANGE': '<S1>:24' */
+      354:  251:        feedback_control_DWork->up = feedback_control_DWork->mean * 0.001;
+      354:  252:        feedback_control_DWork->down = 0.1 - feedback_control_DWork->up;
+        -:  253:      } else {
+        -:  254:        /* Transition: '<S1>:29' */
+     1029:  255:        feedback_control_DWork->is_LOGIC_OPERATOR =
+        -:  256:          feedback_control_IN_OUT_RANGE;
+     1029:  257:        feedback_control_DWork->temporalCounter_i2 = 0U;
+        -:  258:
+        -:  259:        /* Entry 'OUT_RANGE': '<S1>:25' */
+     1029:  260:        feedback_control_DWork->up = 0.25;
+     1029:  261:        feedback_control_DWork->down = 0.25;
+        -:  262:      }
+     1383:  263:      break;
+        -:  264:
+    68234:  265:     case feedback_control_IN_OUT_RANGE:
+        -:  266:      /* During 'OUT_RANGE': '<S1>:25' */
+    68234:  267:      if (feedback_control_U_echo_input == 1) {
+branch  0 taken 2% (fallthrough)
+branch  1 taken 98%
+        -:  268:        /* Transition: '<S1>:35' */
+     1028:  269:        feedback_control_DWork->counter = 0U;
+        -:  270:
+        -:  271:        /* Transition: '<S1>:33' */
+        -:  272:        /* Transition: '<S1>:34' */
+     1028:  273:        feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_COUNTER;
+        -:  274:
+        -:  275:        /* Entry 'COUNTER': '<S1>:14' */
+     1028:  276:        feedback_control_DWork->counter++;
+        -:  277:      } else {
+    67206:  278:        if (feedback_control_DWork->temporalCounter_i2 >= 60010U) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  279:          /* Transition: '<S1>:37' */
+        -:  280:          /* Transition: '<S1>:40' */
+        -:  281:          /* Transition: '<S1>:42' */
+        -:  282:          /* Transition: '<S1>:43' */
+        1:  283:          feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_ERROR;
+        -:  284:
+        -:  285:          /* Entry 'ERROR': '<S1>:26' */
+        1:  286:          feedback_control_DWork->up = 0.5;
+        1:  287:          feedback_control_DWork->down = 0.5;
+        -:  288:        }
+        -:  289:      }
+    68234:  290:      break;
+        -:  291:
+    61453:  292:     default:
+        -:  293:      /* During 'SAVE_MEASURE': '<S1>:16' */
+    61453:  294:      if (feedback_control_DWork->i == 4) {
+branch  0 taken 2% (fallthrough)
+branch  1 taken 98%
+        -:  295:        /* Transition: '<S1>:23' */
+     1383:  296:        feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_MEAN;
+        -:  297:
+        -:  298:        /* Entry 'MEAN': '<S1>:20' */
+     1383:  299:        feedback_control_DWork->mean = (((feedback_control_DWork->dist_v[0] +
+     1383:  300:          feedback_control_DWork->dist_v[1]) + feedback_control_DWork->dist_v[2])
+     1383:  301:          + feedback_control_DWork->dist_v[3]) / 232.0;
+     1383:  302:        feedback_control_DWork->dist_v[0] = feedback_control_DWork->dist_v[1];
+     1383:  303:        feedback_control_DWork->dist_v[1] = feedback_control_DWork->dist_v[2];
+     1383:  304:        feedback_control_DWork->dist_v[2] = feedback_control_DWork->dist_v[3];
+     1383:  305:        feedback_control_DWork->i = 4U;
+    60070:  306:      } else if (feedback_control_U_echo_input == 1) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  307:        /* Transition: '<S1>:19' */
+        6:  308:        feedback_control_DWork->counter = 0U;
+        6:  309:        feedback_control_DWork->i++;
+        6:  310:        feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_COUNTER;
+        -:  311:
+        -:  312:        /* Entry 'COUNTER': '<S1>:14' */
+        6:  313:        feedback_control_DWork->counter++;
+        -:  314:      } else {
+    60064:  315:        if (feedback_control_DWork->temporalCounter_i2 >= 60010U) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  316:          /* Transition: '<S1>:44' */
+        1:  317:          feedback_control_DWork->is_LOGIC_OPERATOR = feedback_control_IN_ERROR;
+        -:  318:
+        -:  319:          /* Entry 'ERROR': '<S1>:26' */
+        1:  320:          feedback_control_DWork->up = 0.5;
+        1:  321:          feedback_control_DWork->down = 0.5;
+        -:  322:        }
+        -:  323:      }
+    61453:  324:      break;
+        -:  325:    }
+        -:  326:
+        -:  327:    /* During 'LED': '<S1>:51' */
+  2700000:  328:    if (feedback_control_DWork->is_LED == feedback_control_IN_OFF) {
+branch  0 taken 52% (fallthrough)
+branch  1 taken 48%
+        -:  329:      /* Outport: '<Root>/level' */
+  1394736:  330:      *feedback_control_Y_level = 0U;
+        -:  331:
+        -:  332:      /* During 'OFF': '<S1>:52' */
+  1394736:  333:      if (feedback_control_DWork->temporalCounter_i3 >= ((uint32_T)ceil
+  1394736:  334:           ((feedback_control_DWork->down / 1.0E-6) - 1.0E-14))) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  335:        /* Transition: '<S1>:55' */
+        7:  336:        feedback_control_DWork->is_LED = feedback_control_IN_ON;
+        7:  337:        feedback_control_DWork->temporalCounter_i3 = 0U;
+        -:  338:
+        -:  339:        /* Outport: '<Root>/level' */
+        -:  340:        /* Entry 'ON': '<S1>:54' */
+        7:  341:        *feedback_control_Y_level = 1U;
+        -:  342:      }
+        -:  343:    } else {
+        -:  344:      /* Outport: '<Root>/level' */
+  1305264:  345:      *feedback_control_Y_level = 1U;
+        -:  346:
+        -:  347:      /* During 'ON': '<S1>:54' */
+  1305264:  348:      if ((feedback_control_DWork->temporalCounter_i3 >= ((uint32_T)ceil
+  1305264:  349:            ((feedback_control_DWork->up / 1.0E-6) - 1.0E-14))) &&
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+     5284:  350:          (feedback_control_DWork->down != 0.0)) {
+branch  0 taken 1% (fallthrough)
+branch  1 taken 100%
+        -:  351:        /* Transition: '<S1>:56' */
+        7:  352:        feedback_control_DWork->is_LED = feedback_control_IN_OFF;
+        7:  353:        feedback_control_DWork->temporalCounter_i3 = 0U;
+        -:  354:
+        -:  355:        /* Outport: '<Root>/level' */
+        -:  356:        /* Entry 'OFF': '<S1>:52' */
+        7:  357:        *feedback_control_Y_level = 0U;
+        -:  358:      }
+        -:  359:    }
+        -:  360:  }
+        -:  361:
+        -:  362:  /* End of Chart: '<Root>/Stateflow_controller' */
+  2700001:  363:}
+        -:  364:
+        -:  365:/* Model initialize function */
+function _Z27feedback_control_initializeP24tag_RTM_feedback_controlPhS1_S1_ called 1 returned 100% blocks executed 100%
+        1:  366:void feedback_control_initialize(RT_MODEL_feedback_control *const
+        -:  367:  feedback_control_M, uint8_T *feedback_control_U_echo_input, uint8_T
+        -:  368:  *feedback_control_Y_level, uint8_T *feedback_control_Y_trigger_output)
+        -:  369:{
+        1:  370:  D_Work_feedback_control *feedback_control_DWork = feedback_control_M->dwork;
+        -:  371:
+        -:  372:  /* Registration code */
+        -:  373:
+        -:  374:  /* states (dwork) */
+        1:  375:  (void) memset((void *)feedback_control_DWork, 0,
+        -:  376:                sizeof(D_Work_feedback_control));
+        -:  377:
+        -:  378:  /* external inputs */
+        1:  379:  *feedback_control_U_echo_input = 0U;
+        -:  380:
+        -:  381:  /* external outputs */
+        1:  382:  (*feedback_control_Y_level) = 0U;
+        1:  383:  (*feedback_control_Y_trigger_output) = 0U;
+        -:  384:
+        -:  385:  /* SystemInitialize for Chart: '<Root>/Stateflow_controller' */
+        1:  386:  feedback_control_DWork->is_LED = feedback_con_IN_NO_ACTIVE_CHILD;
+        1:  387:  feedback_control_DWork->temporalCounter_i3 = 0U;
+        1:  388:  feedback_control_DWork->is_LOGIC_OPERATOR = feedback_con_IN_NO_ACTIVE_CHILD;
+        1:  389:  feedback_control_DWork->temporalCounter_i2 = 0U;
+        1:  390:  feedback_control_DWork->is_TRIGGER = feedback_con_IN_NO_ACTIVE_CHILD;
+        1:  391:  feedback_control_DWork->temporalCounter_i1 = 0U;
+        1:  392:  feedback_control_DWork->is_active_c3_feedback_control = 0U;
+        1:  393:  feedback_control_DWork->up = 2.0;
+        1:  394:  feedback_control_DWork->down = 2.0;
+        1:  395:}
+        -:  396:
+        -:  397:/* Model terminate function */
+function _Z26feedback_control_terminateP24tag_RTM_feedback_control called 1 returned 100% blocks executed 100%
+        1:  398:void feedback_control_terminate(RT_MODEL_feedback_control *const
+        -:  399:  feedback_control_M)
+        -:  400:{
+        -:  401:  /* (no terminate code required) */
+        -:  402:  UNUSED_PARAMETER(feedback_control_M);
+        1:  403:}
+        -:  404:
+        -:  405:/*
+        -:  406: * File trailer for generated code.
+        -:  407: *
+        -:  408: * [EOF]
+        -:  409: */
